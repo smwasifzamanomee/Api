@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>JSON</h1>
+    <h2>JavaScript Object Notation</h2>
+
+    <ul id="user-details">
+
+    </ul>
+
+    <script>
+
+        // const data = {
+        //     "name": "John",
+        //     "age": 30,
+        //     "cars": [
+        //         { "name": "Ford", "models": ["Fiesta", "Focus", "Mustang"] },
+        //         { "name": "BMW", "models": ["320", "X3", "X5"] },
+        //         { "name": "Fiat", "models": ["500", "Panda"] }
+        //     ]
+        // }
+
+        // const user = JSON.stringify(data);
+
+        // console.log(user);
+
+        // const user2 = JSON.parse(user);
+
+        // console.log(user2);
+
+        fetch("https://jsonplaceholder.typicode.com/users/")
+        .then(response => response.json())
+        .then((json) => displayUser(json))
+
+        function displayUser(user){
+            console.log(user)
+            const ul = document.getElementById("user-details");
+            // user.forEach(element => {
+            //     const li = document.createElement("li");
+            //     li.innerText = element.name;
+            //     ul.appendChild(li);
+            // });
+
+            // for (let i = 0; i < user.length; i++) {
+            //     const element = user[i];
+            //     const li = document.createElement("li");
+            //     li.innerText = element.name;
+            //     ul.appendChild(li);
+            // }
+
+            const username = user.map((element) => element.name);
+
+            // username.forEach((element) => {
+            //     const li = document.createElement("li");
+            //     li.innerText = element;
+            //     ul.appendChild(li);
+            // })
+
+            for (let i = 0; i < username.length; i++) {
+                const element = username[i];
+                const li = document.createElement("li");
+                li.innerText = element;
+                ul.appendChild(li);
+            }
+        }
+
+    </script>
+
+
+</body>
+
+</html>
